@@ -28,8 +28,8 @@ const Skill = () => {
                         className="bg-[#F0EFFA] px-[12px] md:px-[18.11px] rounded-2xl text-[15px] font-medium active:scale-[.98] duration-300">Edit
                     </button>
                 </div>
-                <p className="text-sm font-normal text-neutral-800 mt-[19.11px]">NextJs</p>
-                <p className="text-sm font-normal text-neutral-800 mt-[17.22px]">NextJs</p>
+                {skillDate?.data?.map(item =>  <p key={item?._id} className="text-sm font-normal text-neutral-800 mt-[19.11px]">{item?.name}</p>)}
+
             </div>
             <SkillModal setSkillModalOpen={setSkillModalOpen} skillModalOpen={skillModalOpen} render={render} setRender={setRender}/>
         </div>

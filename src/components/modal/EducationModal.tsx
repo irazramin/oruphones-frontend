@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import Modal from "react-modal"
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "@/feature/store";
 import {toast} from "react-toastify";
 import {updateEducation} from "@/feature/educationSlice";
 
-const EducationModal = ({educationModalOpen, setEducationModalOpen, setRender, render}) => {
+const EducationModal = ({ educationModalOpen, setEducationModalOpen, setRender, render }) => {
     const dispatch = useDispatch<AppDispatch>()
     const educationData = useSelector((state: RootState) => state.education.data);
     const educationSuccess = useSelector((state: RootState) => state.education.success);
@@ -97,12 +97,13 @@ const EducationModal = ({educationModalOpen, setEducationModalOpen, setRender, r
 
         dispatch(updateEducation(data));
 
-
-        console.log(educationUpdate.message);
-        setRender(!render)
-        setEducationModalOpen(false);
-        toast.success(('Education updated'))
-
+        console.log(educationUpdate)
+        if ((educationUpdate.message == 'success')) {
+            console.log(educationUpdate.message);
+            setRender(!render)
+            setEducationModalOpen(false);
+            toast.success(('Education updated'))
+        }
     }
 
     return (
@@ -115,54 +116,44 @@ const EducationModal = ({educationModalOpen, setEducationModalOpen, setRender, r
                 contentLabel="Example Modal"
             >
                 <button className="absolute top-[10px] right-[10px]" onClick={closeModal}>
-                    <FontAwesomeIcon icon={faTimes} className="w-[20px] h-[20px] "/>
+                    <FontAwesomeIcon icon={faTimes} className="w-[20px] h-[20px] " />
                 </button>
-                <div>
+                <div className="min-w-[300px]">
                     {educationInput.map((item, idx) => {
                         return (
-                            <form key={idx} id="education" action="#" className="my-[20px] border p-3"
-                                  onSubmit={handleSubmit}>
+                            <form key={idx} id="education" action="#" className="my-[20px] border p-3" onSubmit={handleSubmit}>
                                 <div className="flex items-center gap-[15px]">
                                     <div className="flex flex-col w-full">
                                         <label htmlFor="college" className="font-medium text-sm">College</label>
-                                        <input value={item.college} onChange={(e) => handleInput(e, idx)}
-                                               className="border rounded-md p-2 mt-[12px]" type="text" name="college"
-                                               placeholder="college"/>
+                                        <input value={item.college} onChange={(e) => handleInput(e, idx)} className="border rounded-md p-2 mt-[12px]" type="text" name="college" placeholder="college"/>
                                     </div>
                                     <div className="flex flex-col w-full">
                                         <label htmlFor="degree" className="font-medium text-sm">Degree</label>
-                                        <input value={item.degree} onChange={(e) => handleInput(e, idx)}
-                                               className="border rounded-md p-2 mt-[12px]" type="text" name="degree"
-                                               placeholder="degree"/>
+                                        <input value={item.degree} onChange={(e) => handleInput(e, idx)} className="border rounded-md p-2 mt-[12px]" type="text" name="degree" placeholder="degree"/>
                                     </div>
                                 </div>
                                 <div className="flex items-center mt-[10px] gap-[15px] w-full">
                                     <div className="flex flex-col w-full">
                                         <label htmlFor="start" className="font-medium text-sm">Start</label>
-                                        <input value={item.start} onChange={(e) => handleInput(e, idx)}
-                                               className="border rounded-md p-2 mt-[12px] w-full" type="date"
-                                               name="start" placeholder="start"/>
+                                        <input value={item.start} onChange={(e) => handleInput(e, idx)} className="border rounded-md p-2 mt-[12px] w-full" type="date" name="start" placeholder="start"/>
                                     </div>
                                     <div className="flex flex-col w-full">
-                                        <label htmlFor="end" className="font-medium text-sm">End</label>
-                                        <input value={item.end} onChange={(e) => handleInput(e, idx)}
-                                               className="border rounded-md p-2 mt-[12px] w-full" type="date" name="end"
-                                               placeholder="end"/>
+                                        <label  htmlFor="end" className="font-medium text-sm">End</label>
+                                        <input value={item.end} onChange={(e) => handleInput(e, idx)} className="border rounded-md p-2 mt-[12px] w-full" type="date" name="end" placeholder="end" />
                                     </div>
                                 </div>
 
-                                <textarea value={item.about} onChange={(e) => handleInput(e, idx)}
-                                          className="border rounded-md p-2 mt-[12px] w-full" name="about" id="about"
-                                          cols="30" rows="6" placeholder="about"></textarea>
+                                <textarea value={item.about} onChange={(e) => handleInput(e, idx)} className="border rounded-md p-2 mt-[12px] w-full" name="about" id="about" cols="30" rows="6" placeholder="about"></textarea>
 
 
                             </form>
                         )
                     })}
                 </div>
-
-                <input form="education" type="submit" value="submit"
-                       className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md w-full cursor-pointer"/>
+                <div className="text-center">
+                    <button onClick={addEducationComponentHandle} className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md">Add</button>
+                </div>
+                <input form="education" type="submit" value="submit" className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md w-full cursor-pointer"/>
 
             </Modal>
         </>

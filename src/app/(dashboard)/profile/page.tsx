@@ -128,9 +128,7 @@ const Profile = () => {
                                         <p className="font-normal text-sm mt-[6px]">This are the professional details
                                             shown to users in the app.</p>
                                     </div>
-                                    <button
-                                        className="bg-[#F0EFFA] px-[12px] md:px-[18.11px] rounded-2xl text-[15px] font-medium active:scale-[.98] duration-300">Edit
-                                    </button>
+                                    <img src="/Stars.svg" className="w-[70px] h-[70px]" alt=""/>
                                 </div>
                             </div>
                             <div

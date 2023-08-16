@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aecaae40-38c6-4869-b6ed-14f39ef2cd56" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(dashboard)/profile/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(dashboard)/profile/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/EducationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/EducationModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/modal/ExperienceModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/ExperienceModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/modal/SkillModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/modal/SkillModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/profile/Education.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/Education.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/profile/Skill.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/profile/Skill.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/educationSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/educationSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/feature/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/feature/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +94,7 @@
       <workItem from="1692016483887" duration="64000" />
       <workItem from="1692016614004" duration="728000" />
       <workItem from="1692019470511" duration="66419000" />
-      <workItem from="1692175869986" duration="4961000" />
+      <workItem from="1692175869986" duration="8390000" />
     </task>
     <servers />
   </component>

@@ -23,7 +23,7 @@ export default function Login() {
        }
     }, [apiResponse]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
 
         const data = {

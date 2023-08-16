@@ -30,11 +30,6 @@ const SkillModal = ({ skillModalOpen, setSkillModalOpen, render, setRender }) =>
         if (skillData && skillData.data && skillInput.length <= 2) {
             const newData = skillData.data.map(item => ({
                 name: item.name,
-                degree: item.degree,
-                about: item.about,
-                start: item.start,
-                end: item.end,
-                id: item._id
             }));
 
             seSkillInput(newData);
@@ -74,7 +69,6 @@ const SkillModal = ({ skillModalOpen, setSkillModalOpen, render, setRender }) =>
                     id: skill.id,
                     item: {
                         name: skill.name,
-
                     }
                 }
             } else {
@@ -88,14 +82,16 @@ const SkillModal = ({ skillModalOpen, setSkillModalOpen, render, setRender }) =>
             }
         });
 
-        dispatch(updateSkill(data));
+       if(skillInput.length > 0) {
+           dispatch(updateSkill(data));
 
-
-        console.log(skillUpdate.message);
-        setRender(!render)
-        setSkillModalOpen(false);
-        toast.success(('Skill updated'))
-
+           console.log(skillUpdate.message);
+           setRender(!render)
+           setSkillModalOpen(false);
+           toast.success(('Skill updated'));
+       }else {
+           toast.error(("can't save blank data"));
+       }
     }
 
     return (
@@ -110,21 +106,26 @@ const SkillModal = ({ skillModalOpen, setSkillModalOpen, render, setRender }) =>
                 <button className="absolute top-[10px] right-[10px]" onClick={closeModal}>
                     <FontAwesomeIcon icon={faTimes} className="w-[20px] h-[20px] " />
                 </button>
-                <form id="skill" action="#" className="mt-[10px]">
-                  <div className="flex flex-col">
-                      <label htmlFor="skill" className="font-medium text-sm">Skill</label>
-                      <input value={item.name} onChange={(e) => handleInput(e, idx)}
-                             className="border rounded-md p-2 mt-[12px]" type="text" name="name"
-                             placeholder="name"/>
-                  </div>
-                </form>
+                <div>
+                    {skillInput.map((item, idx) =>{
+                        return (
+                            <form key={idx} id="skill" action="#" className="mt-[10px]" onSubmit={handleSubmit}>
+                                <div className="flex flex-col">
+                                    <label htmlFor="skill" className="font-medium text-sm">Skill</label>
+                                    <input value={item.name} onChange={(e) => handleInput(e, idx)}
+                                           className="border rounded-md p-2 mt-[12px]" type="text" name="name"
+                                           placeholder="name"/>
+                                </div>
+                            </form>
+                        )
+                    })}
+                </div>
                 <div className="text-center">
                     <button onClick={addSkillComponentHandle}
                             className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md">Add
                     </button>
                 </div>
                 <input form="skill" type="submit" value="submit" className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md cursor-pointer" />
-
             </Modal>
         </>
     );
