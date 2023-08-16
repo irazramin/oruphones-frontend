@@ -11,7 +11,7 @@ export default function RootLayout({
                                    }: {
     children: React.ReactNode
 }) {
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen]: any = useState(false);
     return (
             <div className='text-black bg-[#FAFBFF]'>
                 <div className="flex relative">

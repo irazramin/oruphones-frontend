@@ -15,7 +15,7 @@ export default function Registration() {
         }
     }, [apiResponse]);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e): any => {
         e.preventDefault();
 
         const data = {
@@ -26,7 +26,7 @@ export default function Registration() {
         }
 
         try {
-            const response = await axios.post(`http://localhost:4000/api/v1/auth/register`, data);
+            const response: any = await axios.post(`http://localhost:4000/api/v1/auth/register`, data);
             console.log("Resss",response);
 
             if(response.status === 201) {

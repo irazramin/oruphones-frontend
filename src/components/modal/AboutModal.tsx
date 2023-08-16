@@ -11,7 +11,7 @@ const AboutModal = ({ aboutModalOpen, setAboutModalOpen, render, setRender }) =>
 
     const [about, setAbout]: any = useState(userData?.data?.about);
 
-    const customStyles = {
+    const customStyles: any = {
         content: {
             top: '50%',
             left: '50%',
@@ -22,22 +22,21 @@ const AboutModal = ({ aboutModalOpen, setAboutModalOpen, render, setRender }) =>
         },
     }
 
-    useEffect(() => {
+    useEffect((): any => {
         setAbout(userData?.data?.about);
     }, [userData]);
 
-    function closeModal() {
+    function closeModal(): any {
         setAboutModalOpen(false);
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e): any => {
         e.preventDefault();
-        const data = {
+        const data: any = {
             about: about
         }
         try {
-            const response = await axios.put(`http://localhost:4000/api/v1/user/${userData?.data?._id}`, data);
-            console.log(response)
+            const response: any = await axios.put(`http://localhost:4000/api/v1/user/${userData?.data?._id}`, data);
             if(response.status === 201) {
                 setAboutModalOpen(false);
                 setRender(!render)

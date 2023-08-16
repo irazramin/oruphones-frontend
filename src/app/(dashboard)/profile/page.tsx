@@ -31,15 +31,15 @@ const Profile = () => {
     const dispatch = useDispatch<AppDispatch>();
     const userData = useSelector((state: RootState) => state.user.data);
 
-    useEffect(() => {
-        const token = localStorage.getItem("access_token");
+    useEffect((): any => {
+        const token: any = localStorage.getItem("access_token");
 
         if(token === null || token === "") {
            redirect('/login')
         }
     }, [])
 
-    useEffect(() => {
+    useEffect((): any => {
       dispatch(fetchUser())
     }, [dispatch, render]);
 

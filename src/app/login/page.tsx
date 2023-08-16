@@ -9,14 +9,14 @@ export default function Login() {
     const router:any = useRouter();
     const [apiResponse, setApiResponse]: any = useState({ status: null, data: { data: { access_token: null } } })
 
-    useEffect(() => {
+    useEffect((): void => {
         const storedAccessToken = localStorage.getItem("access_token");
         if (storedAccessToken !== null && storedAccessToken !== "") {
             router.push("/profile");
         }
     }, [])
 
-    useEffect(() => {
+    useEffect((): void => {
        if(apiResponse.status == 200){
            localStorage.setItem("access_token", JSON.stringify(apiResponse.data.data.access_token));
            router.push('/profile');
@@ -32,7 +32,7 @@ export default function Login() {
         }
 
         try {
-            const response = await axios.post(`http://localhost:4000/api/v1/auth/login`, data);
+            const response: any = await axios.post(`http://localhost:4000/api/v1/auth/login`, data);
 
             if(response.status === 200) {
                 toast.success(`Login successful`, {
