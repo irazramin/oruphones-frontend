@@ -13,7 +13,7 @@ const ExperienceModal = ({experienceModalOpen, setExperienceModalOpen, setRender
     const experienceSuccess = useSelector((state: RootState) => state.experience.success);
     const experienceUpdate = useSelector((state: RootState) => state.experience.updateData);
     const userData = useSelector((state: RootState) => state.user.data);
-    const [experienceInput, setCertificationInput]: any = useState([]);
+    const [experienceInput, setExperienceInput]: any = useState([]);
 
     const customStyles = {
         content: {
@@ -37,7 +37,7 @@ const ExperienceModal = ({experienceModalOpen, setExperienceModalOpen, setRender
                 id: item._id
             }));
 
-            setCertificationInput(newData);
+            setExperienceInput(newData);
         }
 
         console.log(experienceData)
@@ -51,15 +51,15 @@ const ExperienceModal = ({experienceModalOpen, setExperienceModalOpen, setRender
 
         if (index >= 0 && index < inputsData.length) {
             inputsData[index][name] = value;
-            setCertificationInput(inputsData);
+            setExperienceInput(inputsData);
         }
     }
 
-    const addCertificationComponentHandle = () => {
+    const addExperienceComponentHandle = () => {
         if (experienceInput.length >= 2) {
             toast.error(`You can't add more than 2`)
         } else {
-            setCertificationInput([...experienceInput, {company: "", position: "", jobType: "", start: "", end: ""}]);
+            setExperienceInput([...experienceInput, {company: "", position: "", jobType: "", start: "", end: ""}]);
         }
     }
 
@@ -103,7 +103,7 @@ const ExperienceModal = ({experienceModalOpen, setExperienceModalOpen, setRender
             console.log(experienceUpdate.message)
             setRender(!render)
             setExperienceModalOpen(false);
-            toast.success(('Certification updated'))
+            toast.success(('Experience updated'))
         }
     }
 
@@ -122,7 +122,7 @@ const ExperienceModal = ({experienceModalOpen, setExperienceModalOpen, setRender
                 <div>
                     {experienceInput.map((item, idx) => {
                         return (
-                            <form id="experience" action="#" className="my-[20px] border p-3"  onSubmit={handleSubmit}>
+                            <form key={idx} id="experience" action="#" className="my-[20px] border p-3"  onSubmit={handleSubmit}>
                                 <div className="flex items-center gap-[15px] justify-center">
                                     <div className="flex flex-col">
                                         <label htmlFor="company" className="font-medium text-sm">Company</label>
@@ -158,7 +158,7 @@ const ExperienceModal = ({experienceModalOpen, setExperienceModalOpen, setRender
                     })}
                 </div>
                 <div className="text-center">
-                    <button onClick={addCertificationComponentHandle} className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md">Add</button>
+                    <button onClick={addExperienceComponentHandle} className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md">Add</button>
                 </div>
                 <input form="experience" type="submit" value="submit"
                        className="bg-[#BAB6EB] mt-[15px] p-2 font-medium text-sm rounded-md w-full cursor-pointer"/>

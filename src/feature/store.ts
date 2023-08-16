@@ -1,6 +1,8 @@
 import userReducer from './userSlice';
 import certificationReducer from './certificationSlice';
 import experienceReducer from './experienceSlice';
+import educationReducer from './educationSlice';
+import skillReducer from './skillSlice';
 import {configureStore} from "@reduxjs/toolkit";
 
 export const store = configureStore({
@@ -8,6 +10,8 @@ export const store = configureStore({
         user: userReducer,
         certification: certificationReducer,
         experience: experienceReducer,
+        education: educationReducer,
+        skill: skillReducer,
     },
 });
 

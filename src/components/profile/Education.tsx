@@ -1,9 +1,22 @@
 'use client'
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import EducationModal from "@/components/modal/EducationModal";
+import {useDispatch, useSelector} from "react-redux";
+import {AppDispatch, RootState} from "@/feature/store";
+import {fetchEducation} from "@/feature/educationSlice";
 
 const Education = () => {
     const [educationModalOpen, setEducationModalOpen] = useState(false);
+    const dispatch = useDispatch<AppDispatch>();
+    const educationDate = useSelector((state: RootState) => state.education.data);
+    const userData = useSelector((state: RootState) => state.user.data);
+    const [render, setRender] = useState(false);
+
+    useEffect(() => {
+        if (userData?.data?._id) {
+            dispatch(fetchEducation(userData?.data?._id));
+        }
+    }, [userData?.data?._id, render])
 
     return (
         <div>
@@ -15,22 +28,24 @@ const Education = () => {
                 </button>
             </div>
 
-            <div
-                className="relative bg-white border border-black border-opacity-20 rounded-lg shadow p-[16px] my-[12px]">
-                <div className="w-full">
-                    <h3 className="uppercase text-[#413B89] text-lg font-semibold">IIT
-                        HYDERABAD</h3>
+            {educationDate?.data?.map(item => {
+                return (
                     <div
-                        className="text-sm font-medium flex items-center justify-between mt-[10px]">
-                        <p>(2010-2014)</p>
-                        <p>Btech</p>
+                        key={item._id}
+                        className="relative bg-white border border-black border-opacity-20 rounded-lg shadow p-[16px] my-[12px]">
+                        <div className="w-full">
+                            <h3 className="uppercase text-[#413B89] text-lg font-semibold">{item.college}</h3>
+                            <div
+                                className="text-sm font-medium flex items-center justify-between mt-[10px]">
+                                <p>({new Date(item.start).getFullYear()}-{new Date(item.end).getFullYear()})</p>
+                                <p>{item.degree}</p>
+                            </div>
+                            <p className="mt-[10px] text-sm text-[#49454FCC]">{item.about}</p>
+                        </div>
                     </div>
-                    <p className="mt-[10px] text-sm text-[#49454FCC]">Lorem ipsum dolor sit amet
-                        consectetur. Erat auctor a aliquam vel congue luctus. Leo diam cras neque
-                        mauris ac arcu elit ipsum dolor sit amet consectetur.</p>
-                </div>
-            </div>
-            <EducationModal educationModalOpen={educationModalOpen} setEducationModalOpen={setEducationModalOpen} />
+                )
+            })}
+            <EducationModal educationModalOpen={educationModalOpen} setEducationModalOpen={setEducationModalOpen} render={render} setRender={setRender}/>
         </div>
     );
 };
